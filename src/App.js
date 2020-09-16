@@ -17,7 +17,7 @@ function LocationWeatherInfoBlock({ getWeather, onload = false }) {
       navigator.geolocation.getCurrentPosition(function (position) {
         console.log(position, 'frist time');
         fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=bfa02c38b1011a52dd60675378b19bc2&units=metric`,
+          `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${process.env.REACT_APP_API_KEY}`,
         )
           .then((response) => response.json())
           .then((res) => setWeatherInfo(res));
@@ -59,7 +59,7 @@ function App() {
 
   function getWeather(cityName) {
     return fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=bfa02c38b1011a52dd60675378b19bc2&units=metric`,
+      `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.REACT_APP_API_KEY}`,
     );
   }
 
